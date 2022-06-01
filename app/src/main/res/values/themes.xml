@@ -14,7 +14,7 @@
         <!-- Customize your theme here. -->
     </style>
     <style name="splashTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="android:windowBackground">@drawable/splash_bg</item>
+        <item name="android:windowBackground">@drawable/splas</item>
         <item name="android:windowFullscreen">true</item>
     </style>
 </resources>
