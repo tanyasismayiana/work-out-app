@@ -39,12 +39,22 @@ class LoginActivity : AppCompatActivity() {
         var email =etEmail.text.toString()
         var password=etPassword.text.toString()
 
+        etEmail.
+
         if (email.isBlank()) {
             tilEmail.error = "@string/errorEmail"
+        }
+        if (patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            tilEmail.error = "Email is invalid"
         }
         if (password.isBlank()){
             tilPassword.error="password is required"
         }
+
+        if (confirmpassword ! = password){
+            tillPassword.error ="password not matched"
+        }
+
 
 
     }
