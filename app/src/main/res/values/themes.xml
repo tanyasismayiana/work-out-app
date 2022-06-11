@@ -13,6 +13,10 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="HomeTheme" parent="Theme.Homeworkout">
+        <item name="colorPrimary">#F1CBC3</item>
+    </style>
     <style name="splashTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:windowBackground">@drawable/splas</item>
         <item name="android:windowFullscreen">true</item>
