@@ -3,6 +3,7 @@ package dev.tanya.homeworkout
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Patterns
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -38,22 +39,25 @@ class LoginActivity : AppCompatActivity() {
     fun validateLogin(){
         var email =etEmail.text.toString()
         var password=etPassword.text.toString()
+        var error=false
 
-        etEmail.
 
         if (email.isBlank()) {
             tilEmail.error = "@string/errorEmail"
+            error=true
         }
-        if (patterns.EMAIL_ADDRESS.matcher(email).matches()){
+        if (Patterns.EMAIL_ADDRESS.matcher(email).matches()){
             tilEmail.error = "Email is invalid"
+            error=true
         }
         if (password.isBlank()){
             tilPassword.error="password is required"
+            error=true
+        }
+        if(!error){
+            startActivity(Intent(this, HomeActivity::class.java))
         }
 
-        if (confirmpassword ! = password){
-            tillPassword.error ="password not matched"
-        }
 
 
 

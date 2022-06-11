@@ -10,6 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Homeworkout">
         <activity
+            android:name=".HomeActivity"
+            android:exported="false"
+            android:theme="@style/HomeTheme"/>
+         <activity
             android:name=".LoginActivity"
             android:exported="false" />
         <activity
