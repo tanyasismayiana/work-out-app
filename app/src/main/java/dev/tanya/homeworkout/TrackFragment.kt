@@ -21,7 +21,7 @@ class TrackFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.tvName.text="Tanya"
+        binding.tvName.text="plan fragment"
     }
 
     override fun onDestroyView() {
