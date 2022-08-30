@@ -10,17 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Homeworkout">
         <activity
-            android:name=".HomeActivity"
+            android:name=".ui.HomeActivity"
             android:exported="false"
             android:theme="@style/HomeTheme"/>
          <activity
-            android:name=".LoginActivity"
+            android:name=".ui.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".SignupActivity"
+            android:name=".ui.SignupActivity"
             android:exported="false" />
         <activity
-            android:name=".splashActivity"
+            android:name=".ui.splashActivity"
             android:exported="true"
             android:theme="@style/splashTheme">
             <intent-filter>

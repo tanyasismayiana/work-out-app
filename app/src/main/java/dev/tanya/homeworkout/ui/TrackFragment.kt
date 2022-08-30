@@ -1,4 +1,4 @@
-package dev.tanya.homeworkout
+package dev.tanya.homeworkout.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

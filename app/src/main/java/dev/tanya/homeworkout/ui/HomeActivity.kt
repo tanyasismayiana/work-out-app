@@ -1,11 +1,9 @@
-package dev.tanya.homeworkout
+package dev.tanya.homeworkout.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.fragment.app.FragmentContainerView
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import dev.tanya.homeworkout.R
 import dev.tanya.homeworkout.databinding.ActivityHomeBinding
-import dev.tanya.homeworkout.databinding.ActivityLoginBinding
 
 class HomeActivity : AppCompatActivity() {
     lateinit var binding: ActivityHomeBinding
@@ -23,15 +21,18 @@ class HomeActivity : AppCompatActivity() {
         binding.bnvHome.setOnItemSelectedListener { item->
             when(item.itemId){
                 R.id.Plan ->{
-                    supportFragmentManager.beginTransaction().replace(R.id.fcvHome,PlanFragment()).commit()
+                    supportFragmentManager.beginTransaction().replace(R.id.fcvHome, PlanFragment()).commit()
                     true
                 }
                 R.id.Track ->{
-                    supportFragmentManager.beginTransaction().replace(R.id.fcvHome,TrackFragment()).commit()
+                    supportFragmentManager.beginTransaction().replace(R.id.fcvHome, TrackFragment()).commit()
                     true
                 }
                 R.id.Profile ->{
-                    supportFragmentManager.beginTransaction().replace(R.id.fcvHome,profileFragment()).commit()
+                    supportFragmentManager.beginTransaction().replace(
+                        R.id.fcvHome,
+                        profileFragment()
+                    ).commit()
                     true
                 }
                 else->false

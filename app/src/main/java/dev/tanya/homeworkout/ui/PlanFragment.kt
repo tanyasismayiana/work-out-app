@@ -1,10 +1,11 @@
-package dev.tanya.homeworkout
+package dev.tanya.homeworkout.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import dev.tanya.homeworkout.R
 
 class PlanFragment : Fragment() {
     override fun onCreateView(
