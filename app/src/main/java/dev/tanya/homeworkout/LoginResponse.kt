@@ -9,5 +9,4 @@ data class LoginResponse(
     @SerializedName("profile_id")var profileId:String
 
 
-
 )

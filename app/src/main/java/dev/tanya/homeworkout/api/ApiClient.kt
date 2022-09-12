@@ -1,4 +1,4 @@
-package dev.tanya.homeworkout.models
+package dev.tanya.homeworkout.api
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

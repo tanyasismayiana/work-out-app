@@ -6,11 +6,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
 import android.widget.Toast
-import dev.tanya.homeworkout.ApiInterface
+import androidx.activity.viewModels
+import androidx.lifecycle.Observer
+import dev.tanya.homeworkout.api.ApiInterface
 import dev.tanya.homeworkout.LoginRequest
 import dev.tanya.homeworkout.LoginResponse
 import dev.tanya.homeworkout.databinding.ActivityLoginBinding
-import dev.tanya.homeworkout.models.ApiClient
+import dev.tanya.homeworkout.api.ApiClient
+import dev.tanya.homeworkout.viewModel.UserViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -19,6 +22,7 @@ import retrofit2.Response
 class LoginActivity : AppCompatActivity() {
     lateinit var binding: ActivityLoginBinding
     lateinit var sharedPrefs: SharedPreferences
+    val userViewModel: UserViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +38,18 @@ class LoginActivity : AppCompatActivity() {
 
         }
         sharedPrefs = getSharedPreferences("HOMEWORKOUT_PREFS", MODE_PRIVATE)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        UserViewModel().loginLiveData.observe(this, Observer{loginResponse->
+            Toast.makeText(baseContext, loginResponse?.message, Toast.LENGTH_LONG)
+                .show()
+            persistLoginDetails(loginResponse!!)
+
+            startActivity(Intent(baseContext, HomeActivity::class.java))
+        })
+
     }
 
     fun validateLogin() {
@@ -59,49 +75,19 @@ class LoginActivity : AppCompatActivity() {
         }
         if (!error) {
             val loginRequest = LoginRequest(email, password)
-           makeLoginRequest(loginRequest)
+            userViewModel.login(loginRequest)
         }
-         }
+    }
 
-        fun makeLoginRequest(loginRequest: LoginRequest) {
-            val apiClient = ApiClient.buildApiClient(ApiInterface::class.java)
-            val request = apiClient.loginUser((loginRequest))
-            request.enqueue(object : Callback<LoginResponse> {
-                override fun onResponse(
-                    call: Call<LoginResponse>, response: Response<LoginResponse>
-                ) {
-                    if (response.isSuccessful) {
-                        val loginResponse = response.body()
-                        Toast.makeText(baseContext, loginResponse?.message, Toast.LENGTH_LONG)
-                            .show()
-                        persistLoginDetails(loginResponse!!)
-
-                        startActivity(Intent(baseContext, HomeActivity::class.java))
-                    } else {
-                        val error = response.errorBody()?.string()
-                        Toast.makeText(baseContext, error, Toast.LENGTH_LONG).show()
-                    }
-
-                }
-
-
-                override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-                    Toast.makeText(baseContext, t.message, Toast.LENGTH_LONG).show()
-                }
-
-            })
-
-
-        }
-    fun  persistLoginDetails(loginResponse: LoginResponse){
+    fun persistLoginDetails(loginResponse: LoginResponse) {
         val editor = sharedPrefs.edit()
-        editor.putString("USER_ID",loginResponse.userId)
-        editor.putString("ACCESS_TOKEN",loginResponse.accessToken)
-        editor.putString("PROFILE_ID",loginResponse.profileId)
+        editor.putString("USER_ID", loginResponse.userId)
+        editor.putString("ACCESS_TOKEN", loginResponse.accessToken)
+        editor.putString("PROFILE_ID", loginResponse.profileId)
         editor.apply()
 
     }
-    }
+}
 
 
 
