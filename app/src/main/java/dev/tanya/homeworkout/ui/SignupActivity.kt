@@ -48,6 +48,9 @@ class SignupActivity : AppCompatActivity() {
                 .show()
             startActivity(Intent(baseContext, HomeActivity::class.java))
         })
+        userViewModel.registerError.observe(this, Observer { errorMsg ->
+            Toast.makeText(baseContext,errorMsg,Toast.LENGTH_LONG).show()
+        })
 
     }
 
